@@ -14,55 +14,81 @@ It has built in support for the folowwing validations:
 + regex
 + custom (you supply a function that return a boolean, you are supplied the value for the input as a parameter
 
-###Here is an example of a form:
+###Here is you you would import it into an Aurelia app
+```javascript
+import {inject} from 'aurelia-framework';
+import {RSValidation} from '../services/rocketstorm-validation';
 
-```html
-<form class="${show}">
+@inject(RSValidation)
+export class Register {
 
-            <div class="input-wrapper">
-
-                <div class="input-icon-wrapper">
-                    <i class="fa fa-user"></i>
-                </div><!-- input-icon-wrapper -->
-
-                <input placeholder="username" type="text" value.bind="userName" class="input" name="userName" id="userName" />
-
-            </div><!-- input-wrapper -->
-
-            <div class="input-wrapper sub">
-
-                <div class="input-icon-wrapper">
-                    <i class="fa fa-envelope"></i>
-                </div><!-- input-icon-wrapper -->
-
-                <input placeholder="email" type="text" value.bind="email" class="input" name="email" id="email" />
-
-            </div><!-- input-wrapper -->
-
-            <div class="input-wrapper sub">
-
-                <div class="input-icon-wrapper">
-                    <i class="fa fa-lock"></i>
-                </div><!-- input-icon-wrapper -->
-
-                <input placeholder="password" type="password" value.bind="password" class="input" name="password" id="password" />
-
-            </div><!-- input-wrapper -->
-
-            <div class="input-wrapper sub">
-
-                <div class="input-icon-wrapper">
-                    <i class="fa fa-lock"></i>
-                </div><!-- input-icon-wrapper -->
-
-                <input placeholder="confirm password" type="password" value.bind="passwordConfirm" class="input" name="passwordConfirm" id="passwordConfirm" />
-
-            </div><!-- input-wrapper -->
-
-            <button click.delegate="register()" class="button login">Register</button>
-
-            <a href="#/profile/login" class="already">already have an account? login.</a>
-
-        </form><!-- register form -->
+    constructor(validation){
+        
+        this.validation = validation;   
+        
+    }// ctor
 ```
 
+###Here is an example of a form element:
+
+```html
+<div class="input-wrapper">
+
+    <div class="input-icon-wrapper">
+        <i class="fa fa-user"></i>
+    </div><!-- input-icon-wrapper -->
+
+    <input placeholder="username" type="text" value.bind="userName" class="input" name="userName" id="userName" />
+
+</div><!-- input-wrapper -->
+```
+
+###required field
+**the first parameter to any of the validation methods is the id for the input element;
+
+```javascript
+attached(){
+    this.validation.require('userName');            
+}
+```
+document.getElementById() is used so if using aurelia initialize validation in the attached() method
+
+###email field
+```
+<div class="input-wrapper sub">
+
+    <div class="input-icon-wrapper">
+        <i class="fa fa-envelope"></i>
+    </div><!-- input-icon-wrapper -->
+
+    <input placeholder="email" type="text" value.bind="email" class="input" name="email" id="email" />
+
+</div><!-- input-wrapper -->
+```
+
+```javascript
+attached(){
+    this.validation.email('email');
+}
+```
+
+###minlength field
+```javascript
+attached(){
+    this.validation.minLength('userName', 6);
+}
+```
+
+###maxlength field
+```javascript
+attached(){
+    this.validation.maxLength('userName', 8);
+}
+```
+
+###regex field
+```javascript
+attached(){
+   this.validation.regEx("userName", /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$/);
+}
+```
