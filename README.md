@@ -148,3 +148,15 @@ register(){
     }// register()
 ```
 ![alt text](https://github.com/rocketstormstudios/rocketstorm-validation/blob/master/validation.PNG "validation object")
+
+###Here is an example shot of a partially valid form
+![alt text](https://github.com/rocketstormstudios/rocketstorm-validation/blob/master/validation.PNG "validation object")
+
+
+For my particular input validation errors I add the class input-validation error to the image and the input-wrapper.
+with this current setup the compare validator is "backward looking". If you initialize the compare validator after the field that you are comparing to, the compare validator will re-validate on the keyup of the compared field. I might make the feature to make it "forward looking" also. 
+
+I am thinking about also adding the option to turn on/off the blur and keyup bindings and I probably will add support for 
+multiple forms.
+
+***Also, this doesn't follow the idioms of the Aurelia frame, specifically the DOM "diving" but I write soem apps in pure javascript, so I wanted to kill 2 birds with one stone.
