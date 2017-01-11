@@ -150,7 +150,7 @@ register(){
 ![alt text](https://github.com/rocketstormstudios/rocketstorm-validation/blob/master/validation.PNG "validation object")
 
 ###Here is an example shot of a partially valid form
-![alt text](https://github.com/rocketstormstudios/rocketstorm-validation/blob/master/validation.PNG "validation object")
+![alt text](https://github.com/rocketstormstudios/rocketstorm-validation/blob/master/partial-valid.PNG "form example")
 
 
 For my particular input validation errors I add the class input-validation error to the image and the input-wrapper.
