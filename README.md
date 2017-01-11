@@ -159,4 +159,4 @@ with this current setup the compare validator is "backward looking". If you init
 I am thinking about also adding the option to turn on/off the blur and keyup bindings and I probably will add support for 
 multiple forms.
 
-***Also, this doesn't follow the idioms of the Aurelia frame, specifically the DOM "diving" but I write soem apps in pure javascript, so I wanted to kill 2 birds with one stone.
+***Also, this doesn't follow the idioms of the Aurelia framework, specifically the DOM "diving" but I write some apps in pure javascript, so I wanted to kill 2 birds with one stone.
