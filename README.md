@@ -14,7 +14,7 @@ It has built in support for the folowwing validations:
 + regex
 + custom (you supply a function that returns a boolean, you are supplied the value for the input as a parameter
 
-###Here is you you would import it into an Aurelia app
+###Here is how you would import it into an Aurelia app
 ```javascript
 import {inject} from 'aurelia-framework';
 import {RSValidation} from '../services/rocketstorm-validation';
