@@ -12,7 +12,7 @@ It has built in support for the folowwing validations:
 + maxlength
 + range
 + regex
-+ custom (you supply a function that return a boolean, you are supplied the value for the input as a parameter
++ custom (you supply a function that returns a boolean, you are supplied the value for the input as a parameter
 
 ###Here is you you would import it into an Aurelia app
 ```javascript
@@ -27,6 +27,10 @@ export class Register {
         this.validation = validation;   
         
     }// ctor
+```
+or you can "new' it up
+```javascript
+var validation = new RSValidation();
 ```
 
 ###Here is an example of a form element:
@@ -54,7 +58,7 @@ attached(){
 document.getElementById() is used so if using aurelia initialize validation in the attached() method
 
 ###email field
-```
+```html
 <div class="input-wrapper sub">
 
     <div class="input-icon-wrapper">
@@ -69,6 +73,13 @@ document.getElementById() is used so if using aurelia initialize validation in t
 ```javascript
 attached(){
     this.validation.email('email');
+}
+```
+
+###Non-Parameterized Validators can be passed as an array
+```javascript
+attached(){
+    this.validation.require(['password', 'email']);
 }
 ```
 
@@ -92,3 +103,48 @@ attached(){
    this.validation.regEx("userName", /(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,10})$/);
 }
 ```
+
+###range field
+```javascript
+attached(){
+   this.validation.range('password', 4, 8);
+}
+```
+
+###compare field
+```javascript
+attached(){
+   this.validation.compare('passwordConfirm', 'password');
+}
+```
+
+###custom field
+```javascript
+attached(){
+   this.validation.custom('userName', (val) => {
+            return val.indexOf('1') > -1;
+        });
+}
+```
+
+###2 convienence methods
+```javascript
+    this.validation.getValidators();
+    this.validation.getValidatorByElementId(id);
+```
+
+###Validate a form (all the validators you intialized)
+validate() returns a promise with an object that specifies if the whole form is valid, and a collection 
+of all the validators that are invalid
+```javascript
+register(){
+
+        this.validation.validate().then(result => {
+        
+            console.log('validation', result);
+        
+        });
+
+    }// register()
+```
+![alt text](https://drive.google.com/file/d/0B0ox2BR3x6gQOXVqYWxEX0NHVE0/view "validation object")
